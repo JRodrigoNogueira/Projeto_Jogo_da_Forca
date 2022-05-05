@@ -22,6 +22,12 @@
             font-size: 40px;
         }
 
+        #erro {
+            display: flex;
+            grid-template-columns: 1fr 3fr;
+            gap: 10px;
+        }
+
         #msg {
             color: white;
             font-size: 40px;
@@ -84,7 +90,7 @@
             display: grid;
         }
 
-        #palavra{
+        #palavra {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -97,45 +103,45 @@
         }
 
         #forca {
-            position: absolute;
-            left: 150px;
-            top: 545px;
+            position: relative;
+            width: 330px;
+            height: 410px;
         }
 
         #cabeca {
             position: absolute;
-            top: -503px;
-            left: 102px;
+            left: 91.4px;
+            top: 0px;
         }
 
         #corpo {
             position: absolute;
-            top: -270px;
-            left: 105px;
+            left: 88px;
+            top: 120px;
         }
 
         #bracoE {
             position: absolute;
-            top: -328px;
-            left: -75px;
+            top: 92px;
+            left: -5px;
         }
 
         #bracoD {
             position: absolute;
-            top: -330px;
-            left: 340px;
+            top: 95px;
+            left: 218px;
         }
 
         #pernaE {
             position: absolute;
-            top: -23px;
-            left: -72px;
+            top: 255px;
+            left: -4px;
         }
 
         #pernaD {
             position: absolute;
-            top: -23px;
-            left: 245px;
+            top: 255px;
+            left: 168px;
         }
     </style>
 </head>
@@ -177,20 +183,22 @@
                 <button onclick="jogar()" class="b">Jogar</button>
                 <button onclick="dica()" class="b">Dica</button>
                 <div id="msg"></div><br>
-                <div id="letrasDigitadas">Letras Digitadas</div>
             </div>
-            <div id="forca">
-                <img id="cabeca" src="img/cabeca1.png">
-                <img id="corpo" src="img/corpo.png">
-                <img id="bracoE" src="img/bracoE.png">
-                <img id="bracoD" src="img/bracoD.png">
-                <img id="pernaE" src="img/pernaE.png">
-                <img id="pernaD" src="img/pernaD.png">
+            <div id="erro">
+                <div id="letrasDigitadas">Letras Digitadas</div>
+                <div id="forca">
+                    <img id="cabeca" src="img/cabeca1.png">
+                    <img id="corpo" src="img/corpo.png">
+                    <img id="bracoE" src="img/bracoE.png">
+                    <img id="bracoD" src="img/bracoD.png">
+                    <img id="pernaE" src="img/pernaE.png">
+                    <img id="pernaD" src="img/pernaD.png">
+                </div>
             </div>
         </div>
     </div>
     <script>
-        let biblioteca = ["floricultura", "amendoim", "cassino", "borboleta", "corretora", "jogador", "masmorras", "personagens", "livraria", "pensador", "irmandade", "segregar", "ensinar","baterista","pacifista","cooperativo","assaltante","esportista","perigoso","biblioteca","livraria","pernilongo","variedade","segregacionista","relativismo","jeito","meigo","seriado","resfriado","doente","queimadura","noturno","adjetivo","substantivo","cidade","mascarado","nojento","vindouro","escola","parabrisa"]
+        let biblioteca = ["floricultura", "amendoim", "cassino", "borboleta", "corretora", "jogador", "masmorras", "personagens", "livraria", "pensador", "irmandade", "segregar", "ensinar", "baterista", "pacifista", "cooperativo", "assaltante", "esportista", "perigoso", "biblioteca", "livraria", "pernilongo", "variedade", "segregacionista", "relativismo", "jeito", "meigo", "seriado", "resfriado", "doente", "queimadura", "noturno", "adjetivo", "substantivo", "cidade", "mascarado", "nojento", "vindouro", "escola", "parabrisa"]
         let qt = biblioteca.length - 1
         let pos = Math.round(Math.random() * qt)
         let palavra = biblioteca[pos]
@@ -336,7 +344,7 @@
                 while (!verifica) {
                     if (document.getElementById("letra" + sort).value != "") {
                         sort = Math.floor(Math.random() * tam)
-                    }else{
+                    } else {
                         let sub = pala.charAt(sort).toUpperCase()
                         alert(`Dica: Letra ${sub}.`)
                         verifica = true
