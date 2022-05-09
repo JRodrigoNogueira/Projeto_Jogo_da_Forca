@@ -1,0 +1,242 @@
+body {
+    background-color: #15202b
+}
+
+* {
+    font-size: 40px;
+    color: white;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+#erro {
+    display: flex;
+    gap: 10px;
+}
+
+#msg {
+    text-align: center;
+    margin: 10px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+}
+
+#inserir {
+    display: flex;
+    line-height: 0px;
+    justify-content: center;
+}
+
+#controlesJogador {
+    display: grid;
+    gap: 5px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#letrasDigitadas {
+    margin: 0px;
+    text-align: center;
+}
+
+#letraX {
+    width: 40px;
+    height: 50px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 5px;
+    color: black;
+}
+
+#textoTopo {
+    display: grid;
+}
+
+#palavra {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#forca {
+    position: relative;
+    width: 330px;
+    height: 410px;
+}
+
+#cabeca {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 72.5px);
+}
+
+#corpo {
+    display: none;
+    position: absolute;
+    top: 120px;
+    left: calc(50% - 75px);
+}
+
+#bracoE {
+    display: none;
+    position: absolute;
+    top: 91px;
+    left: calc(50% - 170px);
+}
+
+#bracoD {
+    display: none;
+    position: absolute;
+    top: 93px;
+    left: calc(50% - -55px);
+}
+
+#pernaE {
+    display: none;
+    position: absolute;
+    top: 259px;
+    left: calc(50% - 170px);
+}
+
+#pernaD {
+    display: none;
+    position: absolute;
+    top: 259px;
+    left: calc(50% - -5px);
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn {
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    background-color: #1d9bf0;
+}
+
+.letra {
+    width: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 5px;
+    display: none;
+    height: 50px;
+}
+
+.modalContainer.mostrar {
+    display: flex;
+}
+
+.modalContainer {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+}
+
+.modal {
+    position: relative;
+    background: #15202b;
+    width: 30%;
+    min-width: 100px;
+    padding: 40px;
+    border: 10px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    box-shadow: 0 0 0 10px #15202b;
+}
+
+@keyframes modal{
+    from {
+        opacity: 0;
+        transform: translate3d(0,-60px,0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+
+.mostrar .modal{
+    animation: modal .3s;
+}
+
+.fechar {
+    position: absolute;
+    right: -30px;
+    top: -30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 4px #15202b;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+@media (max-width: 800px){
+    #erro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #inserir {
+        display: block;
+        text-align: center;
+        margin: 10px;
+    }
+
+    #forca {
+        display: flex;
+        width: 100%;
+    }
+
+    .letra {
+        padding: 0;
+        gap: 0;
+    }
+
+    #palavra {
+        text-align: center;
+        display: block;
+    }
+}
+
+@media (max-width: 500px){
+    * {
+        font-size: 30px;
+    }
+
+    .btn {
+        font-size: 20px;
+    }
+
+    .btns {
+        display: block
+    }
+}

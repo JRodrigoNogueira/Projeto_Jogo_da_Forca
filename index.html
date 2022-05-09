@@ -6,153 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Forca</title>
-    <style>
-        body {
-            background-color: #15202b
-        }
-
-        h1 {
-            color: white;
-            font-size: 50px;
-            text-align: center;
-        }
-
-        p {
-            color: white;
-            font-size: 40px;
-        }
-
-        #erro {
-            display: flex;
-            grid-template-columns: 1fr 3fr;
-            gap: 10px;
-        }
-
-        #msg {
-            color: white;
-            font-size: 40px;
-            text-align: center;
-            margin: 10px;
-        }
-
-        #container {
-            display: grid;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        #inserir {
-            display: flex;
-            line-height: 0px;
-            justify-content: center;
-        }
-
-        .b {
-            font-size: 30px;
-            color: white;
-            height: 40px;
-            background-color: #1d9bf0;
-        }
-
-        #controlesJogador {
-            display: grid;
-            gap: 5px;
-        }
-
-        #letrasDigitadas {
-            color: white;
-            font-size: 40px;
-            margin: 0px;
-            text-align: center;
-        }
-
-        .letra {
-            width: 40px;
-            font-size: 40px;
-            text-transform: uppercase;
-            text-align: center;
-            margin: 5px;
-            display: none;
-            height: 50px;
-            color: white;
-        }
-
-        .letraX {
-            width: 40px;
-            height: 50px;
-            font-size: 40px;
-            text-transform: uppercase;
-            text-align: center;
-            margin: 5px;
-        }
-
-        #menu {
-            display: grid;
-        }
-
-        #palavra {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #forca {
-            position: relative;
-            width: 330px;
-            height: 410px;
-        }
-
-        #cabeca {
-            position: absolute;
-            left: 91.4px;
-            top: 0px;
-        }
-
-        #corpo {
-            position: absolute;
-            left: 88px;
-            top: 120px;
-        }
-
-        #bracoE {
-            position: absolute;
-            top: 92px;
-            left: -5px;
-        }
-
-        #bracoD {
-            position: absolute;
-            top: 95px;
-            left: 218px;
-        }
-
-        #pernaE {
-            position: absolute;
-            top: 255px;
-            left: -4px;
-        }
-
-        #pernaD {
-            position: absolute;
-            top: 255px;
-            left: 168px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
     <div id="container">
-        <div id="menu" class="display">
+        <div id="textoTopo">
             <h1>Jogo da Forca</h1>
-            <button onclick="inicio()" class="b">Nova Palavra</button>
+            <button onclick="inicio()" class="btn">Nova Palavra</button>
         </div>
-        <div id="palavra" class="display">
+        <div id="palavra">
             <input type="text" id="letra0" class="letra" maxlength="1">
             <input type="text" id="letra1" class="letra" maxlength="1">
             <input type="text" id="letra2" class="letra" maxlength="1">
@@ -174,16 +38,18 @@
             <input type="text" id="letra18" class="letra" maxlength="1">
             <input type="text" id="letra19" class="letra" maxlength="1">
         </div>
-        <div id="jogador" class="display">
+        <div id="jogador">
             <div id="controlesJogador">
                 <div id="inserir">
                     <p>Digite uma Letra: </p>
-                    <input type="text" id="letraX" class="letraX" maxlength="1">
+                    <input type="text" id="letraX" maxlength="1">
                 </div>
-                <button onclick="jogar()" class="b">Jogar</button>
-                <button onclick="dica()" class="b">Dica</button>
-                <div id="msg"></div><br>
+                <div class="btns">
+                    <button onclick="jogar()" class="btn">Jogar</button>
+                    <button onclick="dica()" class="btn">Dica</button>
+                </div>
             </div>
+            <div id="msg"></div><br>
             <div id="erro">
                 <div id="letrasDigitadas">Letras Digitadas</div>
                 <div id="forca">
@@ -196,165 +62,20 @@
                 </div>
             </div>
         </div>
+        <div id="msgModal" class="modalContainer">
+            <div class="modal">
+                <button class="fechar" onclick="removerModal()">x</button>
+                <h3 id="msgDica"></h3>
+                <div>
+                    <div class="btns">
+                        <input type="button" class="btn" value="Preencher" onclick="preencher()">
+                        <input type="button" class="btn" value="Continuar" onclick="removerModal()">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script>
-        let biblioteca = ["floricultura","xadrez", "yoga", "xerox", "aguarrás", "amendoim", "cassino", "borboleta", "corretora", "jogador", "masmorras", "personagens", "livraria", "pensador", "irmandade", "segregar", "ensinar", "baterista", "pacifista", "cooperativo", "assaltante", "esportista", "perigoso", "biblioteca", "livraria", "pernilongo", "variedade", "segregacionista", "relativismo", "jeito", "meigo", "seriado", "resfriado", "doente", "queimadura", "noturno", "adjetivo", "substantivo", "cidade", "mascarado", "nojento", "vindouro", "escola", "parabrisa"]
-        let qt = biblioteca.length - 1
-        let pos = Math.round(Math.random() * qt)
-        let palavra = biblioteca[pos]
-        let tam = palavra.length
-        let cxLetras = []
-        let acertos = 0
-        let errosMax = 7
-        let erros = 0
-        let desenhos = []
-        let acertou = false
-        let jogando = true
-        let jog
-        let verif = []
-        let cont = 0
-        let lac
-        let pala = palavra
 
-        function inicio() {
-            for (let i = 0; i < tam; i++) {
-                document.getElementById("letra" + i).style.background = "white"
-            }
-            document.getElementById("msg").innerHTML = ""
-            document.getElementById("cabeca").src = "img/cabeca1.png"
-            jogando = true
-            cont = 0
-            acertou = false
-            erros = 0
-            acertos = 0
-            pos = Math.round(Math.random() * qt)
-            palavra = biblioteca[pos]
-            pala = palavra
-            tam = palavra.length
-            jog = document.getElementById("letraX")
-            jog.value = ""
-            jog.focus()
-            document.getElementById("letrasDigitadas").innerHTML = "Letras Digitadas"
-            defineLetras(tam)
-            for (let i = 1; i < 7; i++)
-                desenhos[i].style.display = "none"
-            for (let i = 0; i < 30; i++) {
-                verif[i] = null
-            }
-        }
-
-        function defineLetras(l) {
-            let obj
-            for (i = 0; i < 20; i++) {
-                obj = document.getElementById("letra" + i).value = "";
-                obj = document.getElementById("letra" + i).style.display = "none"
-            }
-            for (i = 0; i < l; i++) {
-                obj = document.getElementById("letra" + i).style.display = "inline-block"
-            }
-        }
-
-        function jogar() {
-            if (jogando) {
-                lac = true
-                jog = document.getElementById("letraX")
-                jog.focus()
-                for (let i = 0; i < 30; i++) {
-                    if (verif[i] == jog.value) {
-                        lac = false
-                        document.getElementById("msg").innerHTML = "Você já tentou essa letra!"
-                    }
-                }
-                verif[cont] = jog.value
-                if (jog.value == "") {
-                    document.getElementById("msg").innerHTML = "Digite uma letra!"
-                } else if (lac) {
-                    let obj
-                    let letraTemp
-                    let letra
-                    let pesq
-                    document.getElementById("msg").innerHTML = ""
-                    cont++
-                    letra = jog.value
-                    jog.value = ""
-                    pesq = palavra.match(letra)
-                    acertou = false
-                    while (pesq != null) {
-                        letraTmp = palavra.search(letra)
-                        document.getElementById("letra" + letraTmp).value = letra
-                        document.getElementById("letra" + letraTmp).style.background = "#00ba7c"
-                        palavra = palavra.replace(letra, '0')
-                        acertos++
-                        pesq = palavra.match(letra)
-                        acertou = true
-                    }
-                    if (!acertou) {
-                        document.getElementById("letrasDigitadas").innerHTML += `<br>${letra.toUpperCase()}`
-                        erros++
-                        if (erros < 7) {
-                            desenhos[erros].style.display = "block"
-                        } else {
-                            document.getElementById("cabeca").src = "img/cabeca2.png"
-                            document.getElementById("msg").innerHTML = "Sinto muito, você perdeu!"
-                            for (let i = 0; i < tam; i++) {
-                                if (document.getElementById("letra" + i).value == "") {
-                                    document.getElementById("letra" + i).style.background = "#f91880"
-                                    let sub = pala.charAt(i)
-                                    document.getElementById("letra" + i).value = sub
-                                }
-                            }
-                            jogando = false
-                        }
-                    } else if (acertos == tam) {
-                        document.getElementById("msg").innerHTML = "Parabéns, você ganhou!"
-                        jogando = false
-                    }
-                }
-            }
-        }
-
-        jog = document.getElementById("letraX")
-        jog.focus()
-        defineLetras(tam)
-
-        document.getElementById("msg").innerHTML = ""
-        desenhos[1] = document.getElementById("cabeca")
-        desenhos[2] = document.getElementById("corpo")
-        desenhos[3] = document.getElementById("bracoE")
-        desenhos[4] = document.getElementById("bracoD")
-        desenhos[5] = document.getElementById("pernaE")
-        desenhos[6] = document.getElementById("pernaD")
-        document.getElementById("cabeca").src = "img/cabeca1.png"
-
-        function test() {
-            let tecla = event.keyCode
-            if (tecla == 13)
-                jogar()
-        }
-
-        addEventListener("keydown", test)
-
-        for (let i = 1; i < 7; i++)
-            desenhos[i].style.display = "none"
-
-        function dica() {
-            if (jogando) {
-                let verifica = false
-                let sort = Math.floor(Math.random() * tam)
-                while (!verifica) {
-                    if (document.getElementById("letra" + sort).value != "") {
-                        sort = Math.floor(Math.random() * tam)
-                    } else {
-                        let sub = pala.charAt(sort).toUpperCase()
-                        alert(`Dica: Letra ${sub}.`)
-                        verifica = true
-                    }
-                }
-                jog.focus()
-            }
-        }
-
-    </script>
 
 </body>
 
