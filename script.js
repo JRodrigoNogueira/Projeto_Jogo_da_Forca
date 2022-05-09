@@ -23,6 +23,7 @@ let letraCode
 let letraValida
 let letraDica
 let msgDica
+let letraDigitada
 
 
 window.addEventListener("load", inicializar)
@@ -62,7 +63,7 @@ function inicio() {
     erros = 0
     acertos = 0
     pos = Math.round(Math.random() * qt)
-    palavra = biblioteca[pos]
+    palavra = biblioteca[pos].toUpperCase()
     palavraInit = palavra
     tam = palavra.length
     jog.value = ""
@@ -93,10 +94,11 @@ function jogar() {
     if (jogando) {
         laco = true
         jog.focus()
-        lerLetra(jog.value)
+        letraDigitada = jog.value.toUpperCase()
+        lerLetra(letraDigitada)
         //Testando se a letra já foi digitiada
         for (let i = 0; i < 30; i++) {
-            if (verifLetra[i] == jog.value) {
+            if (verifLetra[i] == letraDigitada) {
                 laco = false
                 msg.innerHTML = "Você já tentou essa letra!"
             }
@@ -105,17 +107,18 @@ function jogar() {
         if (!letraValida) {
             msg.innerHTML = "Digite apenas letras!"
         }//Testando se algo foi digitado
-        else if (jog.value == "") {
+        else if (letraDigitada == "") {
             msg.innerHTML = "Digite uma letra!"
         } else if (laco) {
-            verifLetra[cont] = jog.value
+            verifLetra[cont] = letraDigitada
             let letra
             let pesq
             let letraTmp
             msg.innerHTML = ""
             cont++
-            letra = jog.value
+            letra = letraDigitada
             jog.value = ""
+            letraDigitada = ""
             pesq = palavra.match(letra)
             acertou = false
             //Enquanto a palavra possuir a letra digitada
@@ -174,7 +177,7 @@ function dica() {
             if (document.getElementById("letra" + sort).value != "") {
                 sort = Math.floor(Math.random() * tam)
             } else {
-                letraDica = palavraInit.charAt(sort).toUpperCase()
+                letraDica = palavraInit.charAt(sort)
                 verifica = true
                 iniciarModal()
             }
@@ -197,7 +200,7 @@ function lerLetra(letra) {
 //Dica - Função Preencher
 function preencher(){
     removerModal()
-    jog.value = letraDica.toLowerCase()
+    jog.value = letraDica
     jogar()
 }
 
