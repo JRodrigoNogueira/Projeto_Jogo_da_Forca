@@ -14,7 +14,16 @@
     <div id="container">
         <div id="textoTopo">
             <h1>Jogo da Forca</h1>
+        </div>
+        <div class="btns">
             <button onclick="inicio()" class="btn">Nova Palavra</button>
+            <select id="temas" class="btn" onchange="trocaTema()">
+                <option value="t1" class="tema">Tema: Padrão</option>
+                <option value="t2" class="tema">Tema: LoL</option>
+                <option value="t3" class="tema">Tema: Filmes</option>
+                <option value="t4" class="tema">Tema: Séries</option>
+                <option value="t5" class="tema">Tema: Jogos</option>
+            </select>
         </div>
         <div id="palavra">
             <input type="text" id="letra0" class="letra" maxlength="1">
@@ -28,48 +37,34 @@
             <input type="text" id="letra8" class="letra" maxlength="1">
             <input type="text" id="letra9" class="letra" maxlength="1">
             <input type="text" id="letra10" class="letra" maxlength="1">
-            <input type="text" id="letra11" class="letra" maxlength="1">
-            <input type="text" id="letra12" class="letra" maxlength="1">
-            <input type="text" id="letra13" class="letra" maxlength="1">
-            <input type="text" id="letra14" class="letra" maxlength="1">
-            <input type="text" id="letra15" class="letra" maxlength="1">
-            <input type="text" id="letra16" class="letra" maxlength="1">
-            <input type="text" id="letra17" class="letra" maxlength="1">
-            <input type="text" id="letra18" class="letra" maxlength="1">
-            <input type="text" id="letra19" class="letra" maxlength="1">
         </div>
-        <div id="jogador">
-            <div id="controlesJogador">
-                <div id="inserir">
-                    <p>Digite uma Letra: </p>
-                    <input type="text" id="letraX" maxlength="1">
-                </div>
-                <div class="btns">
-                    <button onclick="jogar()" class="btn">Jogar</button>
-                    <button onclick="dica()" class="btn">Dica</button>
-                </div>
-            </div>
-            <div id="msg"></div><br>
-            <div id="erro">
-                <div id="letrasDigitadas">Letras Digitadas</div>
-                <div id="forca">
-                    <img id="cabeca" src="img/cabeca1.png">
-                    <img id="corpo" src="img/corpo.png">
-                    <img id="bracoE" src="img/bracoE.png">
-                    <img id="bracoD" src="img/bracoD.png">
-                    <img id="pernaE" src="img/pernaE.png">
-                    <img id="pernaD" src="img/pernaD.png">
-                </div>
-            </div>
+        <div id="inserir">
+            <p>Digite uma Letra: </p>
+            <input type="text" id="letraX" maxlength="1">
+        </div>
+        <div class="btns">
+            <button onclick="jogar()" class="btn">Jogar</button>
+            <button onclick="dica()" class="btn">Dica</button>
+        </div>
+        <div id="msg"></div>
+        <div id="letrasDigitadas">Letras Digitadas:</div>
+        <div id="forca">
+            <img id="cabeca" src="img/cabeca1.png">
+            <img id="corpo" src="img/corpo.png">
+            <img id="bracoE" src="img/bracoE.png">
+            <img id="bracoD" src="img/bracoD.png">
+            <img id="pernaE" src="img/pernaE.png">
+            <img id="pernaD" src="img/pernaD.png">
         </div>
         <div id="msgModal" class="modalContainer">
             <div class="modal">
                 <button class="fechar" onclick="removerModal()">x</button>
                 <h3 id="msgDica"></h3>
                 <div>
-                    <div class="btns">
-                        <input type="button" class="btn" value="Preencher" onclick="preencher()">
-                        <input type="button" class="btn" value="Continuar" onclick="removerModal()">
+                    <div class="btnsModal">
+                        <input type="button" class="btnModal" value="Nova Palavra" onclick="inicio()">
+                        <input type="button" class="btnModal" value="Preencher" onclick="preencher()">
+                        <input type="button" class="btnModal" value="Continuar" onclick="removerModal()">
                     </div>
                 </div>
             </div>

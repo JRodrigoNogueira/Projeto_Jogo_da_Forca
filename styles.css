@@ -10,16 +10,22 @@ body {
 h1 {
     font-size: 50px;
     text-align: center;
+    margin: 0;
 }
 
 #erro {
     display: flex;
+    flex-direction: column;
     gap: 10px;
+}
+
+#tema {
+    font-size: 20px;
 }
 
 #msg {
     text-align: center;
-    margin: 10px;
+    margin: 0;
 }
 
 #container {
@@ -43,11 +49,6 @@ h1 {
     gap: 5px;
     margin-bottom: 0;
     padding-bottom: 0;
-}
-
-#letrasDigitadas {
-    margin: 0px;
-    text-align: center;
 }
 
 #letraX {
@@ -117,18 +118,38 @@ h1 {
     left: calc(50% - -5px);
 }
 
+.tema {
+    font-size: 30px;
+}
+
 .btns {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    width: 500px;
+}
+
+.btnsModal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .btn {
     font-size: 30px;
     cursor: pointer;
-    width: 100%;
-    height: 40px;
+    width: 50%;
+    height: 50px;
+    background-color: #1d9bf0;
+}
+
+.btnModal {
+    font-size: 20px;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
     background-color: #1d9bf0;
 }
 
@@ -163,7 +184,7 @@ h1 {
     background: #15202b;
     width: 30%;
     min-width: 100px;
-    padding: 40px;
+    padding: 20px;
     border: 10px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     box-shadow: 0 0 0 10px #15202b;
@@ -198,7 +219,51 @@ h1 {
 }
 
 @media (max-width: 800px){
-    #erro {
+    .btnsModal {
+        flex-direction: column;
+    }
+
+    .btnModal {
+        width: 130px;
+    }
+}
+
+@media (max-width: 600px){
+    #container {
+        gap: 5px;
+    }
+
+    * {
+        font-size: 25px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    #palavra {
+        margin-top: 10px;
+        width: 100vw;
+        gap: 2px;
+    }
+
+    .btn {
+        font-size: 20px;
+        width: 40%;
+    }
+
+    .tema {
+        font-size: 20px;
+    }
+
+    .btns {
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+        width: 100vw;
+    }
+
+    #letrasDigitadas {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -218,25 +283,8 @@ h1 {
 
     .letra {
         padding: 0;
-        gap: 0;
-    }
-
-    #palavra {
-        text-align: center;
-        display: block;
-    }
-}
-
-@media (max-width: 500px){
-    * {
-        font-size: 30px;
-    }
-
-    .btn {
-        font-size: 20px;
-    }
-
-    .btns {
-        display: block
+        margin: 0;
+        width: 10%;
+        max-width: 40px;
     }
 }

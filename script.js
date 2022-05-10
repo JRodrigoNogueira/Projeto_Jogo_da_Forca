@@ -1,7 +1,6 @@
-let biblioteca = ["floricultura", "xadrez", "yoga", "xerox", "amendoim", "cassino", "borboleta", "corretora", "jogador", "masmorras", "personagens",
-    "livraria", "pensador", "irmandade", "segregar", "ensinar", "baterista", "pacifista", "cooperativo", "assaltante", "esportista", "perigoso", "biblioteca",
-    "pernilongo", "variedade", "segregacionista", "relativismo", "jeito", "meigo", "seriado", "resfriado", "doente", "queimadura", "noturno", "adjetivo", "substantivo",
-    "cidade", "mascarado", "nojento", "vindouro", "escola", "parabrisa"]
+let biblioteca = ["xadrez", "zorra", "cascata", "cassino", "pensador", "picareta", "cone", "fome", "caminhar", "seriado",
+    "simples", "assoprar", "sambar", "leitura", "cinema", "jogadores", "masmorra", "limonada", "leigo", "livraria",
+    "mesclar", "muralha", "acreditar", "sanfona", "sapateado", "sentimento", "chamariz", "imaginar", "vestimenta", "latir"]
 let qt = biblioteca.length - 1
 let pos
 let palavra
@@ -24,7 +23,8 @@ let letraValida
 let letraDica
 let msgDica
 let letraDigitada
-
+let temas
+let msg
 
 window.addEventListener("load", inicializar)
 
@@ -44,6 +44,8 @@ function inicializar() {
     letrasDigitDisplay = document.getElementById("letrasDigitadas")
     msgDica = document.getElementById("msgDica")
     modal = document.getElementById("msgModal")
+    temas = document.getElementById("temas")
+    btnModal = document.getElementsByClassName("btnModal")
 
     jog.focus()
 
@@ -52,9 +54,7 @@ function inicializar() {
 
 //Preparo para um novo jogo
 function inicio() {
-    for (let i = 0; i < tam; i++) {
-        document.getElementById("letra" + i).style.background = "white"
-    }
+    removerModal()
     msg.innerHTML = ""
     cabeca.src = "img/cabeca1.png"
     jogando = true
@@ -68,7 +68,10 @@ function inicio() {
     tam = palavra.length
     jog.value = ""
     jog.focus()
-    letrasDigitDisplay.innerHTML = "Letras Digitadas"
+    letrasDigitDisplay.innerHTML = "Letras Digitadas:"
+    for (let i = 0; i < tam; i++) {
+        document.getElementById("letra" + i).style.background = "white"
+    }
     defineLetras(tam)
     for (let i = 1; i < 7; i++)
         desenhos[i].style.display = "none"
@@ -80,7 +83,7 @@ function inicio() {
 //Determinando quantas caixas de letras serão exibidas
 function defineLetras(l) {
     let obj
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 11; i++) {
         obj = document.getElementById("letra" + i).value = "";
         obj = document.getElementById("letra" + i).style.display = "none"
     }
@@ -133,14 +136,15 @@ function jogar() {
             }
             //Se a palavra não possuir a letra digitada
             if (!acertou) {
-                letrasDigitDisplay.innerHTML += `<br>${letra.toUpperCase()}`
                 erros++
                 //Teste de derrota
                 if (erros < errosMax) {
+                    letrasDigitDisplay.innerHTML += ` ${letra.toUpperCase()},`
                     desenhos[erros].style.display = "block"
                 } else {
                     cabeca.src = "img/cabeca2.png"
-                    msg.innerHTML = "Sinto muito, você perdeu!"
+                    letrasDigitDisplay.innerHTML += ` ${letra.toUpperCase()}.`
+                    msg = "Sinto muito, você perdeu!"
                     for (let i = 0; i < tam; i++) {
                         if (document.getElementById("letra" + i).value == "") {
                             document.getElementById("letra" + i).style.background = "#f91880"
@@ -149,11 +153,13 @@ function jogar() {
                         }
                     }
                     jogando = false
+                    iniciarModal(msg,jogando)
                 }
                 //Teste de vitória
             } else if (acertos == tam) {
-                msg.innerHTML = "Parabéns, você ganhou!"
+                msg = "Parabéns, você ganhou!"
                 jogando = false
+                iniciarModal(msg,jogando)
             }
         }
     }
@@ -179,7 +185,8 @@ function dica() {
             } else {
                 letraDica = palavraInit.charAt(sort)
                 verifica = true
-                iniciarModal()
+                msg = `Dica: Letra ${letraDica}.`
+                iniciarModal(msg,jogando)
             }
         }
         jog.focus()
@@ -190,26 +197,73 @@ function dica() {
 function lerLetra(letra) {
     letraCode = letra.charCodeAt(letra)
     if ((letraCode >= 65 && letraCode <= 90) || (letraCode >= 95 && letraCode <= 122)) {
-        letraValida=true;
+        letraValida = true;
     }
     else {
-        letraValida=false;
+        letraValida = false;
     }
 }
 
 //Dica - Função Preencher
-function preencher(){
+function preencher() {
     removerModal()
     jog.value = letraDica
     jogar()
 }
 
-//Controle do Modal
-function iniciarModal(){
-    msgDica.innerHTML = `Dica: Letra ${letraDica}.`
-    modal.classList.add("mostrar")
+//Muda o array de palavras
+function trocaTema() {
+    switch (temas.value) {
+        case "t1":
+            biblioteca = ["xadrez", "zorra", "cascata", "cassino", "pensador", "picareta", "cone", "fome", "caminhar", "seriado",
+                "simples", "assoprar", "sambar", "leitura", "cinema", "jogadores", "masmorra", "limonada", "leigo", "livraria",
+                "mesclar", "muralha", "acreditar", "sanfona", "sapateado", "sentimento", "chamariz", "imaginar", "vestimenta", "latir"]
+            qt = biblioteca.length - 1
+            break
+
+        case "t2":
+            biblioteca = ["Akshan", "Aphelios", "Blitzcrank", "Camille", "Caitlyn", "Evelynn", "Ekko", "Illaoi", "Ivern", "Kennen",
+                "Kindred", "Kled", "Leblanc", "Lulu", "Malzahar", "Morgana", "Nocturne", "Pantheon", "Qiyana", "Renekton",
+                "Sejuani", "Sett", "Senna", "Singed", "Tryndamere", "Twitch", "Vladmir", "Xerath", "Yorick", "Yasuo"]
+            qt = biblioteca.length - 1
+            break
+
+        case "t3":
+            biblioteca = ["Vingadores", "Avatar", "Titanic", "Frozen", "Minions", "Aquaman", "Coringa", "Batman", "Aladdin", "Venom",
+                "Zootopia", "Shrek", "Soul", "Valente", "Moana", "Divergente", "Ragnarok", "Godzilla", "Vikings", "Gravidade",
+                "Megamente", "Norbit", "Duna", "Eternos", "Luca", "V", "Cruella", "Rio", "Carros", "Enrolados"]
+            qt = biblioteca.length - 1
+            break
+
+        case "t4":
+            biblioteca = ["Superstore", "Vikings", "Dark", "Ragnarok", "Suits", "Elite", "Atypical", "TeenWolf", "Glee", "Riverdalee",
+                "Supergirl", "Gatunas", "Gotham", "Rebelde", "Lupin", "Lucifer", "Ruptura", "Outlander", "Sintonia", "Arcane",
+                "You", "Spartacus", "Sherlock", "SmallVille", "Kingdom", "Lost", "Heroes", "Desalma", "Frontier", "Bridgerton"]
+            qt = biblioteca.length - 1
+            break
+
+        case "t5":
+            biblioteca = ["Skyrim", "Uncharted", "Forza", "Halo", "Terraria", "GTA", "Warframe", "Smite", "Lineage", "Fifa",
+                "DayZ", "Valheim", "Minecraft", "Bioshock", "Ark", "Hitman", "Mario", "Sonic","Tetris", "Diablo", 
+                "Warcraft", "Metalgear", "Portal", "Starcraft", "Pong", "Inside", "Valorant", "Simcity", "OverWatch", "Bloodborne"]
+            qt = biblioteca.length - 1
+            break
+    }
 }
 
-function removerModal(){
+//Controle do Modal
+function iniciarModal(msg,jogo) {
+    msgDica.innerHTML = msg
+    modal.classList.add("mostrar")
+    if(jogo){
+        btnModal[0].style.display = "none"
+        btnModal[1].style.display = "inline"
+    }else if(!jogo){
+        btnModal[1].style.display = "none"
+        btnModal[0].style.display = "inline"
+    }
+}
+
+function removerModal() {
     modal.classList.remove("mostrar")
 }
