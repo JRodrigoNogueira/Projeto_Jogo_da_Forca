@@ -249,6 +249,7 @@ function trocaTema() {
             qt = biblioteca.length - 1
             break
     }
+    inicio()
 }
 
 //Controle do Modal
