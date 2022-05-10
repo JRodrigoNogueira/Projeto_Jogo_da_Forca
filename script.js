@@ -257,11 +257,11 @@ function iniciarModal(msg,jogo) {
     msgDica.innerHTML = msg
     modal.classList.add("mostrar")
     if(jogo){
-        btnModal[0].style.display = "none"
-        btnModal[1].style.display = "inline"
+        btnModal[0].classList.add("ocultar")
+        btnModal[1].classList.remove("ocultar")
     }else if(!jogo){
-        btnModal[1].style.display = "none"
-        btnModal[0].style.display = "inline"
+        btnModal[1].classList.add("ocultar")
+        btnModal[0].classList.remove("ocultar")
     }
 }
 

@@ -1,5 +1,5 @@
 body {
-    background-color: #15202b
+    background-color: #15202b;
 }
 
 * {
@@ -11,7 +11,8 @@ body {
 h1 {
     font-size: 50px;
     text-align: center;
-    margin: 0;
+    margin-bottom: 5px;
+    margin-top: 0px;
 }
 
 #erro {
@@ -135,6 +136,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     width: 100%;
 }
 
@@ -144,6 +146,8 @@ h1 {
     width: 50%;
     height: 50px;
     background-color: #1d9bf0;
+    border-radius:8px;
+    border: none;
 }
 
 .btnModal {
@@ -152,6 +156,8 @@ h1 {
     width: 150px;
     height: 50px;
     background-color: #1d9bf0;
+    border-radius:8px;
+    border: none;
 }
 
 .letra {
@@ -161,6 +167,10 @@ h1 {
     margin: 5px;
     display: none;
     height: 50px;
+}
+
+.ocultar {
+    display: none;
 }
 
 .modalContainer.mostrar {
@@ -215,7 +225,7 @@ h1 {
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 0 4px #15202b;
-    background: rgba(255, 255, 255, 0.1);
+    background: #15202b;;
     cursor: pointer;
 }
 
@@ -259,7 +269,6 @@ h1 {
 
     .btns {
         flex-direction: column;
-        gap: 0;
         margin: 0;
         width: 100vw;
     }
