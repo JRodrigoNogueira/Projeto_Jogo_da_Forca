@@ -27,9 +27,8 @@ h1 {
 
 #msg {
     text-align: center;
-    margin: 0;
 }
-
+    
 #container {
     display: flex;
     flex-direction: column;
@@ -241,7 +240,7 @@ h1 {
 
 @media (max-width: 600px){
     #container {
-        gap: 5px;
+        gap: 10px;
     }
 
     * {
