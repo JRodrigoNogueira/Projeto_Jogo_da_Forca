@@ -306,7 +306,7 @@ function trocaTema() {
                 "Rose", "Jisoo", "Hyuna", "Dawn", "EXO", "Mamamoo", "Nmixx", "MCND", "NCT", "Seventeen",
                 "TVXQ", "Namjoon", "HueningKai", "IKON", "Ryunjin", "Chaeryeong", "Lia", "MonstaX", "Seungmin", "JHope",
                 "LeSserafim", "RedVelvet", "Bahiyyih", "Winter", "Jessi", "Minho", "Jonghyun", "Key", "Onew", "Taemin", 
-                "Kai", "Sunoo", "Jake", "Jay", "Jungwon", "Treasure", "IVE", "Jin"]
+                "Kai", "Sunoo", "Jake", "Jay", "Jungwon", "Treasure", "IVE", "Jin", "Jeongin", "Jisung"]
             qt = biblioteca.length - 1
             break
     }
