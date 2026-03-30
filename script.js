@@ -55,6 +55,7 @@ function inicializar() {
 
 //Preparo para um novo jogo
 function inicio() {
+    console.log("Boa sorte!")
     removerModal()
     solicitaDica = 0
     msgDisplay.innerHTML = ""
