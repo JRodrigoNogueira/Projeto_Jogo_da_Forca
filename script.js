@@ -161,7 +161,7 @@ function jogar() {
                 //Teste de vitória
             } else if (acertos == tam) {
                 pontuacao += 1
-                if(pontuacao < 1){
+                if(pontuacao < 5){
                     msg = `Parabéns, você ganhou!<br>Sua pontuação atual é de: ${pontuacao}`
                 }else {
                     msgDica.style.color = "#00ba7c"
@@ -205,7 +205,7 @@ function jogar() {
                             ⚠️ Bônus: O primeiro a decifrar, me mande mensagem (Nem tudo que reluz...)<br>`
                     msgDica.style.fontSize = "24px";
                     msgDica.style.textAlign = "left";
-                    msgDica.style.height = "600px";
+                    msgDica.style.height = "620px";
                     soltarConfete()
                 }
                 jogando = false
@@ -226,6 +226,7 @@ function recebeEnter(event) {
 
 //Chamada da Função Dica
 function dica() {
+    msgDica.style.height = "auto";
     if ((jogando)&&(solicitaDica<2)) {
         let verifica = false
         let sort = Math.floor(Math.random() * tam)
