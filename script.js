@@ -160,11 +160,11 @@ function jogar() {
                 //Teste de vitória
             } else if (acertos == tam) {
                 pontuacao += 1
-                if(pontuacao < 10){
+                if(pontuacao < 1){
                     msg = `Parabéns, você ganhou!<br>Sua pontuação atual é de: ${pontuacao}`
                 }else {
                     msgDica.style.color = "#00ba7c"
-                    switch(temas.value){
+                    /* switch(temas.value){
                         case "t1":
                             msg = `Você acertou ${pontuacao} palavras seguidas!<br>Você é um mestre no modo padrão!!!`
                             break
@@ -192,7 +192,20 @@ function jogar() {
                         case "t7":
                             msg = msg = `Você acertou ${pontuacao} palavras seguidas!<br>Você é um mestre do Kpop!!!`
                             break
-                    }
+                    } */
+                   msg = `🧩 Parabéns!!<br><br>
+                            Se você está lendo isso, significa que decifrou tudo<br><br>
+                            E com isso, você está oficialmente convidado para o meu aniversário 🎉
+                            
+                            📅 Data: [05/04/2026] (Segunda feira é ruim)<br><br>
+                            📍 Local: [Art Pizza] (Talvez mude)<br><br>
+                            ⏰ Horário: [19:00] (À confirmar)<br><br>
+                            💰 Detalhes: [Open Bar e Open Food] (O que não passar no meu cartão vocês pagam) <br><br>
+                            ⚠️ Bônus: O primeiro a decifrar, me mande mensagem (Nem tudo que reluz...)<br>`
+                    msgDica.style.fontSize = "24px";
+                    msgDica.style.textAlign = "left";
+                    msgDica.style.height = "600px";
+                    soltarConfete()
                 }
                 jogando = false
                 iniciarModal(msg,jogando)
@@ -333,4 +346,27 @@ function iniciarModal(msg,jogo) {
 
 function removerModal() {
     modal.classList.remove("mostrar")
+}
+
+function soltarConfete() {
+  const cores = ["#ff0", "#f00", "#0f0", "#00f", "#ff00ff", "#00ffff"];
+
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+
+    const tamanho = Math.random() * 8 + 5;
+    confetti.style.width = tamanho + "px";
+    confetti.style.height = tamanho + "px";
+
+    const duracao = Math.random() * 3 + 2;
+    confetti.style.animationDuration = duracao + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), duracao * 1000);
+  }
 }
